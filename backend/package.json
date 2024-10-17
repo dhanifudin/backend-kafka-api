@@ -5,6 +5,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "migrate": "sequelize-cli db:migrate",
+    "migrate:status": "sequelize-cli db:migrate:status",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "commonjs",
