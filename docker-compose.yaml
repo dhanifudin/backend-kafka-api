@@ -15,3 +15,8 @@ services:
       MYSQL_DATABASE: todos
       MYSQL_USER: todos
       MYSQL_PASSWORD: secret
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    container_name: mongodb_todos
+    ports:
+      - 27017:27017

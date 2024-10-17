@@ -22,7 +22,7 @@ app.post('/v1/todos', async (req, res) => {
         await producer.send({
             topic: 'test-topic',
             messages: [
-                { value: 'Hello KafkaJS user!' },
+                { value: JSON.stringify(newTodo) },
             ],
         })
         res.status(201).json(newTodo)
