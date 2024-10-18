@@ -32,6 +32,11 @@ app.post('/v1/todos', async (req, res) => {
     }
 })
 
+app.post('/v1/todos/callback', async (req, res) => {
+    console.log(req.body)
+    res.status(200).json({ status: "OK" })
+})
+
 app.listen(3000, async () => {
     await producer.connect()
     console.log('Server listening on 3000')

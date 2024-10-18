@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
+const axios = require('axios')
 const kafka = require('./lib/kafka')('consumer')
 const Todo = require('./models/todo')
+const serverUrl = 'http://localhost:3000'
 
 const mongoDatabase = "mongodb://localhost/todos"
 
@@ -19,10 +21,7 @@ const runConsumer = async () => {
         const data = JSON.parse(message.value.toString())
         const todo = new Todo(data)
         await todo.save()
-      // console.table({
-        // value: JSON.parse(message.value.toString()),
-        //value: message.value.toString(),
-      // })
+        await axios.post(`${serverUrl}/v1/todos/callback`, todo.toObject({getters: true}))
     },
   })
 }
